@@ -74,6 +74,29 @@ $(BUILD_DIR)/%.o: %.c
 # Utility Rules
 # =============================================================================
 
+check: $(TARGET)
+	@echo "Running checks... (no tests defined)"
+	@echo "Check complete."
+
+# Rule to create a distributable tarball.
+dist:
+	@echo "Creating distribution tarball..."
+	@# Ensure we have a README for a proper distribution
+	@touch -a README.md
+	tar -czf $(TARGET)-$(VERSION).tar.gz --transform='s,^,$(TARGET)-$(VERSION)/,' $(DIST_FILES)
+
+# Rule to check if the distribution tarball is self-contained and builds correctly.
+distcheck: dist
+	@echo "Verifying distribution tarball..."
+	gzip -t $(TARGET)-$(VERSION).tar.gz
+	rm -rf $(TARGET)-$(VERSION)
+	tar -xzf $(TARGET)-$(VERSION).tar.gz
+	$(MAKE) -C $(TARGET)-$(VERSION) all
+	$(MAKE) -C $(TARGET)-$(VERSION) check
+	$(MAKE) -C $(TARGET)-$(VERSION) clean
+	rm -rf $(TARGET)-$(VERSION)
+	@echo "Distribution check PASSED."
+
 # Rule to run the program.
 # It first ensures the program is built, then executes it.
 run: $(TARGET)
