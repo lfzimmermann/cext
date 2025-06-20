@@ -1,3 +1,4 @@
+#include <stddef.h>
 struct Cursor{
   unsigned int logical_position; // with gap
   unsigned int actual_position; // without gap; only actual text

@@ -3,28 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "./gap_buffer.h"
-int main(int argc, char** argv){
-  
-  char msg[] = "Hello, world!";
-  struct Gap_Buffer_Struct *gp = gp_create();
-  printf("Capacity: %d\n", gp->capacity);
-
-  for (int i = 0; i < 16; i++){
-    gp_insert(gp, msg[i]);
-    printf("Content: %s\nGap Size: %d\n\n", gp_get_buffer_content(gp), gp->gap.end - gp->gap.start);
-    
-  }
-
-  gp_move_cursor(gp, 2);
-  printf("Cursor positions: \nactual %d;\nlogical %d\n", gp->cursor.actual_position, gp->cursor.logical_position);
-
-  gp_move_cursor(gp, 2 + gp->gap.size);
-  printf("Cursor positions: \nactual %d;\nlogical %d\n", gp->cursor.actual_position, gp->cursor.logical_position);
-
-  gp_destroy(gp);
-
-  return 0;
-}
 
 void gp_destroy(struct Gap_Buffer_Struct* gp){
   if (gp == NULL) {
