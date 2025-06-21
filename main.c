@@ -4,7 +4,7 @@
 
 int main(void){
 
-// Write me a short story about balu the bear. AI!
+  // show me how Gap_Buffer_struct is implemented in my Codebase. AI!
 
   struct Gap_Buffer_Struct *gp = gp_create();
   printf("Capacity: %li\n", gp->capacity);
