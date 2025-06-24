@@ -23,12 +23,17 @@ TARGET = text_editor
 
 # Directories
 BUILD_DIR = build
+TEST_DIR = tests
 SRC_DIRS = src/backend src/frontend
 
 # --- Source Files ---
 # Automatically find all .c files in the specified source directories
 # and also include main.c from the root directory.
 SRCS = $(wildcard $(addsuffix /*.c, $(SRC_DIRS))) main.c
+SRCS_NO_MAIN = $(wildcard $(addsuffix /*.c, $(SRC_DIRS))) 
+
+# --- Test Files ---
+TSTS = $(wildcard $(addsuffix /*.c, $(TEST_DIR)))
 
 # --- Object Files ---
 # Generate a list of object file names (.o) that will be placed in the BUILD_DIR.
@@ -73,6 +78,12 @@ $(BUILD_DIR)/%.o: %.c
 # =============================================================================
 # Utility Rules
 # =============================================================================
+
+test: $(TSTS)
+	@echo "Running tests... "
+	gcc -o $(BUILD_DIR)/main_test $(TSTS) $(SRCS_NO_MAIN) -lcunit
+	./$(BUILD_DIR)/main_test
+
 
 check: $(TARGET)
 	@echo "Running checks... (no tests defined)"
