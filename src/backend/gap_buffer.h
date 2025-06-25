@@ -1,3 +1,6 @@
+#ifndef GAP_BUFFER_H
+#define GAP_BUFFER_H
+
 #include <stddef.h>
 struct Cursor{
     size_t position;
@@ -26,3 +29,5 @@ char* gp_get_buffer_content(struct Gap_Buffer_Struct* gp);
 
 void gp_move_cursor(struct Gap_Buffer_Struct* gp, size_t position);
 struct Gap_Buffer_Struct* gp_resize(struct Gap_Buffer_Struct* gp, size_t new_capacity);
+
+#endif // GAP_BUFFER_H
