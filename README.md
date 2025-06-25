@@ -44,8 +44,8 @@ Das Projekt verwendet `make` zum Kompilieren. Das `Makefile` ist so konfiguriert
 
 1.  **Klone das Repository** (falls noch nicht geschehen):
     ```bash
-    git clone <repository-url>
-    cd <repository-name>
+    git clone https://github.com/lfzimmermann/cext
+    cd cext
     ```
 
 2.  **Stelle sicher, dass die Abhängigkeiten installiert sind:**
