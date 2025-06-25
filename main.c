@@ -1,6 +1,7 @@
-#include "./src/backend/gap_buffer.h"
 #include "stddef.h"
 #include "stdio.h"
+
+#include "./src/backend/gap_buffer.h"
 #include "./src/frontend/gui.h"
 
 int main(void){
