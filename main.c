@@ -1,11 +1,14 @@
 #include "./src/backend/gap_buffer.h"
 #include "stddef.h"
 #include "stdio.h"
+#include "./src/frontend/gui.h"
 
 int main(void){
 
   struct Gap_Buffer_Struct *gp = gp_create();
-  printf("Capacity: %li\n", gp->capacity);
+
+  run_ed_gui(gp);
+
   gp_destroy(gp);
 
   return 0;
