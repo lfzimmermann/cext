@@ -1,3 +1,4 @@
+# AI!: refactor the Makefile to efficiently implement the gui target and clean up potential mistakes i made in the rest of the file.
 # =============================================================================
 # Makefile for the C Text Editor Project
 # =============================================================================
@@ -15,7 +16,7 @@ CC = gcc
 CFLAGS = -g -Wall -Wextra -std=c11 -Iinclude -MMD -MP
 
 # LDFLAGS are the linker flags (none needed for this simple project yet)
-LDFLAGS =
+LDFLAGS = -L./lib/ -I./include/
 
 # --- Project Structure ---
 # Name of the final executable file
@@ -25,12 +26,16 @@ TARGET = text_editor
 BUILD_DIR = build
 TEST_DIR = tests
 SRC_DIRS = src/backend src/frontend
-
+FRONTEND_DIR = src/frontend
+BACKEND_DIR = src/backend
 # --- Source Files ---
 # Automatically find all .c files in the specified source directories
 # and also include main.c from the root directory.
-SRCS = $(wildcard $(addsuffix /*.c, $(SRC_DIRS))) main.c
-SRCS_NO_MAIN = $(wildcard $(addsuffix /*.c, $(SRC_DIRS))) 
+#
+SRCS = $(wildcard $(addsuffix /*.c, $(BACKEND_DIR))) main.c
+SRCS_NO_MAIN = $(wildcard $(addsuffix /*.c, $(BACKEND_DIR)))
+
+GUI = $(wildcard $(addsuffix /*.c, $(FRONTEND_DIR)))
 
 # --- Test Files ---
 TSTS = $(wildcard $(addsuffix /*.c, $(TEST_DIR)))
@@ -73,6 +78,10 @@ $(BUILD_DIR)/%.o: %.c
 # Include the generated dependency files.
 # The '-' before 'include' tells make to not complain if the file doesn't exist.
 -include $(DEPS)
+
+
+gui: $(GUI)
+	gcc -o $(BUILD_DIR)/$@ $^ $(LDFLAGS) -lraylib
 
 
 # =============================================================================
