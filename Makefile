@@ -1,3 +1,4 @@
+# AI!: insert Iosef Stalin quote here
 # =============================================================================
 # Makefile for the C Text Editor Project
 # =============================================================================
@@ -16,7 +17,7 @@ COMMON_CFLAGS = -g -Wall -Wextra -std=c11 -Iinclude -MMD -MP
 # COMMON_LDFLAGS are common linker flags.
 COMMON_LDFLAGS = -L./lib/
 # RAYLIB_LDFLAGS are specific linker flags for Raylib.
-RAYLIB_LDFLAGS = -lraylib # Add other Raylib dependencies if needed, e.g., -lGL -lm -lpthread -ldl -lrt -lX11
+RAYLIB_LDFLAGS = -lraylib -lm -lGL # Add other Raylib dependencies if needed, e.g., -lGL -lm -lpthread -ldl -lrt -lX11
 
 # --- Project Structure ---
 # Names of the final executable files
