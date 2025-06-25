@@ -1,3 +1,5 @@
 build/
+lib/
 text_editor
+text_editor_gui
 .aider*
