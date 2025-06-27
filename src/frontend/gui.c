@@ -1,6 +1,9 @@
 #include "../backend/gap_buffer.h"
 #include "gui.h"
 #include "raylib.h"
+#include "string.h"
+#include "stdlib.h"
+#include "stdio.h"
 
 int run_ed_gui(struct Gap_Buffer_Struct* gp){
 
@@ -36,6 +39,27 @@ int run_ed_gui(struct Gap_Buffer_Struct* gp){
             case KEY_RIGHT:
                 gp_move_cursor(gp, gp->gap.start + 1);
                 break;
+
+            case KEY_ENTER:
+                gp_insert(gp, '\n');
+                break;
+
+            case KEY_UP:
+                char* text = malloc(gp->gap.start);
+                memcpy(text, gp->buffer, gp->gap.start);
+                char pos_c[20];
+                int pos = strrchr(text, '\n') - text;
+                sprintf(pos_c, "%d", pos);
+                DrawText(pos_c, 10, 100, font_size, RED);
+                free(text);
+                gp_move_cursor(gp, pos);
+                break;
+            
+            case KEY_DOWN:
+                break;
+
+
+
 
 
         }

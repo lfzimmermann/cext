@@ -19,6 +19,12 @@ void gp_move_cursor(struct Gap_Buffer_Struct* gp, size_t position) {
     // No move needed.
     return;
   }
+// position > gp->content_len || position < 0
+  
+  if (position > gp->content_len)
+    position = gp->content_len;
+  if (position < 0)
+    position = 0;
 
   if (position < gp->gap.start) {
     // --- MOVE CURSOR LEFT ---
